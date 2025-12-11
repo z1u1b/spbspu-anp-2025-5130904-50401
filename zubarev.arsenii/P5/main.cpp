@@ -75,7 +75,7 @@ Polygon::Polygon(const s_t size, point_t* peaks) : size_(size)
   } catch (...) {
     throw;
   }
-  for (s_t i = 0; i < size; ++i) {
+  for (s_t i = 0; i < size_; ++i) {
     peaks_[i] = peaks[i];
   }
   pos_ = getCentroid();
@@ -370,5 +370,5 @@ int main()
   for (s_t i = 0; i < size; i++) {
     delete shapes[i];
   }
-  return 0;
+  delete [] shapes;
 }
