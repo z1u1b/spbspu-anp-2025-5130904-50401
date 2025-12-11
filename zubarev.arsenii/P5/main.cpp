@@ -323,6 +323,22 @@ void printInfo(Shape* shapes[], s_t size)
 
 int main()
 {
+  point_t scaleCenter = {};
+  double k = 0;
+  std::cout << "Input coordinate: ";
+  std::cin >> scaleCenter.x >> scaleCenter.y;
+  if (std::cin.fail()) {
+    std::cerr << "Wrong input" << '\n';
+    return 1;
+  }
+
+  std::cout << "Input coefficient: ";
+  std::cin >> k;
+  if (k < 0 || std::cin.fail()) {
+    std::cerr << "Wrong input" << '\n';
+    return 1;
+  }
+
   const s_t size = 3;
   Shape* shapes[size] = {};
 
@@ -340,21 +356,7 @@ int main()
   std::cout << "--- BEFORE SCALING ---" << '\n';
   printInfo(shapes, size);
 
-  point_t scaleCenter = {};
-  double k = 0;
-  std::cout << "Input coordinate: ";
-  std::cin >> scaleCenter.x >> scaleCenter.y;
-  if (std::cin.fail()) {
-    std::cerr << "Wrong input" << '\n';
-    return 1;
-  }
 
-  std::cout << "Input coefficient: ";
-  std::cin >> k;
-  if (k < 0 || std::cin.fail()) {
-    std::cerr << "Wrong input" << '\n';
-    return 1;
-  }
   scaleAtCertainPnt(shapes, size, scaleCenter, k);
 
   std::cout << "--- AFTER SCALING (k=" << k << " relative to " << scaleCenter.x << ", "
