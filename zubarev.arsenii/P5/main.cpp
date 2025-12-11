@@ -231,13 +231,6 @@ double dist(point_t& a, point_t& b)
   return std::sqrt(dx * dx + dy * dy);
 }
 
-point_t getExtremePoint(const rectangle_t& frame, bool right)
-{
-  double x = frame.pos.x + (right ? frame.width / 2 : -frame.width / 2);
-  double y = frame.pos.y + (right ? -frame.height / 2 : frame.width / 2);
-
-  return {x, y};
-}
 point_t getExtL(const rectangle_t& frame)
 {
   double x = frame.pos.x - frame.width / 2;
@@ -337,7 +330,7 @@ int main()
   try {
     shapes[0] = new Polygon(3, polyA);
   } catch (...) {
-    std::cerr<<"Memory allocation"<<'\n';
+    std::cerr << "Memory allocation" << '\n';
     return 1;
   }
 
@@ -364,11 +357,11 @@ int main()
   }
   scaleAtCertainPnt(shapes, size, scaleCenter, k);
 
-  std::cout << "--- AFTER SCALING (k=" << k << " relative to " << scaleCenter.x << ", " << scaleCenter.y << ") ---" << '\n';
+  std::cout << "--- AFTER SCALING (k=" << k << " relative to " << scaleCenter.x << ", "
+            << scaleCenter.y << ") ---" << '\n';
   printInfo(shapes, size);
 
   for (s_t i = 0; i < size; i++) {
     delete shapes[i];
   }
-  
 }
