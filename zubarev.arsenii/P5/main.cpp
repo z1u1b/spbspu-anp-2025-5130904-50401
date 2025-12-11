@@ -118,7 +118,6 @@ rectangle_t Polygon::getFrameRect() const
   point_t leftExPt = peaks_[0];
   point_t rightExPt = peaks_[0];
   for (s_t i = 1; i < size_; i++) {
-    point_t framePnt = {};
 
     if (peaks_[i].x < leftExPt.x) {
       leftExPt.x = peaks_[i].x;
@@ -278,7 +277,6 @@ rectangle_t getWholeFrame(Shape* shapes[], s_t size)
   point_t rightExPt = getExtR(frame);
   for (s_t i = 1; i < size; i++) {
     frame = shapes[i]->getFrameRect();
-    point_t framePnt = {};
 
     if (getExtL(frame).x < leftExPt.x) {
       leftExPt.x = getExtL(frame).x;
