@@ -356,11 +356,9 @@ int main()
   std::cout << "--- BEFORE SCALING ---" << '\n';
   printInfo(shapes, size);
 
-
   scaleAtCertainPnt(shapes, size, scaleCenter, k);
 
-  std::cout << "--- AFTER SCALING (k=" << k << " relative to " << scaleCenter.x << ", "
-            << scaleCenter.y << ") ---" << '\n';
+  std::cout << "--- AFTER SCALING (k=" << k << " relative to " << scaleCenter.x << ", " << scaleCenter.y << ") ---" << '\n';
   printInfo(shapes, size);
 
   for (s_t i = 0; i < size; i++) {
