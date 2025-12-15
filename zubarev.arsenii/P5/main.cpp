@@ -43,6 +43,10 @@ namespace zubarev
   {
     Polygon(const size_t size, point_t* peaks);
     virtual ~Polygon();
+    Polygon(const Polygon& w);
+    Polygon& operator=(const Polygon& w);
+    Polygon(Polygon&& w);
+    Polygon& operator=(Polygon&& w);
     double getArea() const override;
     rectangle_t getFrameRect() const override;
     void move(const point_t& p) override;
@@ -51,7 +55,7 @@ namespace zubarev
     point_t getCentroid();
 
   private:
-    const size_t size_;
+    size_t size_;
     point_t* peaks_;
     point_t pos_;
   };
@@ -79,9 +83,8 @@ namespace zubarev
   void printInfo(Shape* shapes[], size_t size);
 }
 
-
-zubarev::Polygon::Polygon(const size_t size, point_t* peaks):
-  size_(size)
+zubarev::Polygon::Polygon(const size_t size, point_t* peaks) :
+    size_(size)
 {
   peaks_ = new point_t[size_];
   for (size_t i = 0; i < size_; ++i) {
@@ -94,7 +97,47 @@ zubarev::Polygon::~Polygon()
 {
   delete[] peaks_;
 }
-
+zubarev::Polygon::Polygon(const Polygon& w) :
+    size_(w.size_),
+    pos_(w.pos_),
+    peaks_(w.size_ ? new point_t[w.size_] : nullptr)
+{
+  for (size_t i = 0; i < size_; ++i) {
+    peaks_[i] = w.peaks_[i];
+  }
+}
+zubarev::Polygon& zubarev::Polygon::operator=(const Polygon& w)
+{
+  point_t* r = nullptr;
+  if (w.size_) {
+    r = new point_t[w.size_];
+    for (size_t i = 0; i < w.size_; ++i) {
+      r[i] = w.peaks_[i];
+    }
+  }
+  delete[] peaks_;
+  peaks_ = r;
+  size_ = w.size_;
+  return *this;
+}
+zubarev::Polygon::Polygon(Polygon&& w) :
+    size_(w.size_),
+    peaks_(w.peaks_),
+    pos_(w.pos_)
+{
+  w.peaks_ = nullptr;
+}
+zubarev::Polygon& zubarev::Polygon::operator=(zubarev::Polygon&& w)
+{
+  if (this == &w) {
+    return *this;
+  }
+  delete[] peaks_;
+  peaks_ = w.peaks_;
+  size_ = w.size_;
+  w.peaks_ = nullptr;
+  return *this;
+}
 double zubarev::Polygon::getArea() const
 {
   double res = 0;
@@ -150,7 +193,7 @@ zubarev::rectangle_t zubarev::Polygon::getFrameRect() const
   rectangle_t allFrame = {};
   allFrame.height = leftExPt.y - rightExPt.y;
   allFrame.width = rightExPt.x - leftExPt.x;
-  allFrame.pos = {leftExPt.x + allFrame.width/2, leftExPt.y - allFrame.height/2};
+  allFrame.pos = {leftExPt.x + allFrame.width / 2, leftExPt.y - allFrame.height / 2};
   return allFrame;
 }
 
@@ -179,13 +222,10 @@ void zubarev::Polygon::scale(double k)
   }
 }
 
-
-
-
-zubarev::Ring::Ring(double r1, double r2, const point_t& pos):
-  r1_(r1),
-  r2_(r2),
-  pos_(pos)
+zubarev::Ring::Ring(double r1, double r2, const point_t& pos) :
+    r1_(r1),
+    r2_(r2),
+    pos_(pos)
 {}
 
 double zubarev::Ring::getArea() const
@@ -220,11 +260,10 @@ void zubarev::Ring::scale(double k)
   r2_ *= k;
 }
 
-
-zubarev::Rectangle::Rectangle(double width, double height, const point_t& pos):
-  width_(width),
-  height_(height),
-  pos_(pos)
+zubarev::Rectangle::Rectangle(double width, double height, const point_t& pos) :
+    width_(width),
+    height_(height),
+    pos_(pos)
 {}
 
 double zubarev::Rectangle::getArea() const
@@ -258,16 +297,14 @@ void zubarev::Rectangle::scale(double k)
   height_ *= k;
 }
 
-
-
 zubarev::point_t zubarev::getExtL(const rectangle_t& frame)
 {
-  return {frame.pos.x - frame.width/2, frame.pos.y + frame.height/2};
+  return {frame.pos.x - frame.width / 2, frame.pos.y + frame.height / 2};
 }
 
 zubarev::point_t zubarev::getExtR(const rectangle_t& frame)
 {
-  return {frame.pos.x + frame.width/2, frame.pos.y - frame.height/2};
+  return {frame.pos.x + frame.width / 2, frame.pos.y - frame.height / 2};
 }
 
 void zubarev::scaleAtCertainPnt(Shape* shapes[], size_t size, point_t userPos, double k)
@@ -317,7 +354,7 @@ zubarev::rectangle_t zubarev::getWholeFrame(Shape* shapes[], size_t size)
   rectangle_t allFrame = {};
   allFrame.height = std::abs(leftExPt.y - rightExPt.y);
   allFrame.width = std::abs(leftExPt.x - rightExPt.x);
-  allFrame.pos = {leftExPt.x + allFrame.width/2, leftExPt.y - allFrame.height/2};
+  allFrame.pos = {leftExPt.x + allFrame.width / 2, leftExPt.y - allFrame.height / 2};
   return allFrame;
 }
 
@@ -351,7 +388,6 @@ void zubarev::printInfo(Shape* shapes[], size_t size)
   std::cout << "Whole frame center: " << allFrame.pos.x << " " << allFrame.pos.y << '\n';
   std::cout << '\n';
 }
-
 
 int main()
 {
