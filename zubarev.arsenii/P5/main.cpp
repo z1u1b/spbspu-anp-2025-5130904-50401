@@ -99,8 +99,8 @@ zubarev::Polygon::~Polygon()
 }
 zubarev::Polygon::Polygon(const Polygon& w) :
   size_(w.size_),
-  peaks_(w.size_ ? new point_t[w.size_] : nullptr),
-  pos_(w.pos_)
+  pos_(w.pos_),
+  peaks_(w.size_ ? new point_t[w.size_] : nullptr)
 {
   for (size_t i = 0; i < size_; ++i) {
     peaks_[i] = w.peaks_[i];
