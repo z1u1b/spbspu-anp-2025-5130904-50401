@@ -56,8 +56,8 @@ namespace zubarev
 
   private:
     size_t size_;
-    point_t* peaks_;
     point_t pos_;
+    point_t* peaks_;
   };
 
   struct Ring : Shape
