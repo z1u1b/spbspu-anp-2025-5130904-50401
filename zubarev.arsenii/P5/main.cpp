@@ -84,7 +84,7 @@ namespace zubarev
 }
 
 zubarev::Polygon::Polygon(const size_t size, point_t* peaks) :
-    size_(size)
+  size_(size)
 {
   peaks_ = new point_t[size_];
   for (size_t i = 0; i < size_; ++i) {
@@ -98,9 +98,9 @@ zubarev::Polygon::~Polygon()
   delete[] peaks_;
 }
 zubarev::Polygon::Polygon(const Polygon& w) :
-    size_(w.size_),
-    pos_(w.pos_),
-    peaks_(w.size_ ? new point_t[w.size_] : nullptr)
+  size_(w.size_),
+  peaks_(w.size_ ? new point_t[w.size_] : nullptr),
+  pos_(w.pos_)
 {
   for (size_t i = 0; i < size_; ++i) {
     peaks_[i] = w.peaks_[i];
@@ -121,9 +121,9 @@ zubarev::Polygon& zubarev::Polygon::operator=(const Polygon& w)
   return *this;
 }
 zubarev::Polygon::Polygon(Polygon&& w) :
-    size_(w.size_),
-    peaks_(w.peaks_),
-    pos_(w.pos_)
+  size_(w.size_),
+  peaks_(w.peaks_),
+  pos_(w.pos_)
 {
   w.peaks_ = nullptr;
 }
@@ -223,9 +223,9 @@ void zubarev::Polygon::scale(double k)
 }
 
 zubarev::Ring::Ring(double r1, double r2, const point_t& pos) :
-    r1_(r1),
-    r2_(r2),
-    pos_(pos)
+  r1_(r1),
+  r2_(r2),
+  pos_(pos)
 {}
 
 double zubarev::Ring::getArea() const
@@ -261,9 +261,9 @@ void zubarev::Ring::scale(double k)
 }
 
 zubarev::Rectangle::Rectangle(double width, double height, const point_t& pos) :
-    width_(width),
-    height_(height),
-    pos_(pos)
+  width_(width),
+  height_(height),
+  pos_(pos)
 {}
 
 double zubarev::Rectangle::getArea() const
