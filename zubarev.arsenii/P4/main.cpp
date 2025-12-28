@@ -74,9 +74,7 @@ void zubarev::pushOneEl(char** arr, size_t& size, char value)
   newArr[size] = value;
   delete[] *arr;
   *arr = newArr;
-  if (value=='\n') {
-    size = size + 1;
-  }
+  size++;
 }
 
 char* zubarev::getline(std::istream& in, size_t& s)
