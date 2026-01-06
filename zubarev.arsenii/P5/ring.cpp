@@ -1,0 +1,40 @@
+#include "ring.hpp"
+#include <cmath>
+#include <algorithm>
+zubarev::Ring::Ring(double r1, double r2, const point_t& pos) :
+  r1_(r1),
+  r2_(r2),
+  pos_(pos)
+{}
+
+double zubarev::Ring::getArea() const
+{
+  return M_PI * std::abs(r1_ * r1_ - r2_ * r2_);
+}
+
+zubarev::rectangle_t zubarev::Ring::getFrameRect() const
+{
+  rectangle_t frame;
+  double r = std::max(r1_, r2_);
+  frame.pos = pos_;
+  frame.width = 2 * r;
+  frame.height = 2 * r;
+  return frame;
+}
+
+void zubarev::Ring::move(const point_t& p)
+{
+  pos_ = p;
+}
+
+void zubarev::Ring::move(double dx, double dy)
+{
+  pos_.x += dx;
+  pos_.y += dy;
+}
+
+void zubarev::Ring::scale(double k)
+{
+  r1_ *= k;
+  r2_ *= k;
+}
