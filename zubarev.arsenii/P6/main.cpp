@@ -36,37 +36,52 @@ int main()
     zub::point_t polyA[3] = {{0, 0}, {4, 0}, {2, 4}};
     shapes.preappend(new zub::Polygon(3, polyA));
 
+    std::cout << "--- BEFORE SCALING ---" << '\n';
     zub::printInfo(shapes.shapes(), shapes.size());
 
+    zub::scaleAtCertainPnt(shapes.shapes(), shapes.size(), scaleCenter, k);
 
-    std::cout << "\n";
-    std::cout << "First area: " << shapes.first().getArea() << "\n";
-    std::cout << "Last area: " << shapes.last().getArea() << "\n";
+    std::cout << "--- AFTER SCALING (k=" << k << " relative to " << scaleCenter.x << ", "
+          << scaleCenter.y << ") ---" << '\n';
 
-
-    shapes.add(new zub::Rectangle(2, 8, {2, 2}), 2);
-    std::cout << "\n";
-    std::cout << "After insert at index 2:\n";
     zub::printInfo(shapes.shapes(), shapes.size());
 
+    for (size_t i = 0; i < shapes.size(); i++) {
+      delete shapes.shapes()[i];
+    }
 
-    shapes.remove(1);
-    std::cout << "\n";
-    std::cout << "After remove index 1:\n";
-    zub::printInfo(shapes.shapes(), shapes.size());
+    // zub::printInfo(shapes.shapes(), shapes.size());
 
-    shapes.dropFirst();
-    shapes.dropLast();
-    std::cout << "\nAfter drop first and last:\n";
-    zub::printInfo(shapes.shapes(), shapes.size());
 
-    shapes.clear();
-    std::cout << "\n";
-    std::cout << "After clear:\n";
-    std::cout << "Empty: " << shapes.empty() << "\n";
+    // std::cout << "\n";
+    // std::cout << "First area: " << shapes.first().getArea() << "\n";
+    // std::cout << "Last area: " << shapes.last().getArea() << "\n";
+
+
+    // shapes.add(new zub::Rectangle(2, 8, {2, 2}), 2);
+    // std::cout << "\n";
+    // std::cout << "After insert at index 2:\n";
+    // zub::printInfo(shapes.shapes(), shapes.size());
+
+
+    // shapes.remove(1);
+    // std::cout << "\n";
+    // std::cout << "After remove index 1:\n";
+    // zub::printInfo(shapes.shapes(), shapes.size());
+
+    // shapes.dropFirst();
+    // shapes.dropLast();
+    // std::cout << "\nAfter drop first and last:\n";
+    // zub::printInfo(shapes.shapes(), shapes.size());
+
+    // shapes.clear();
+    // std::cout << "\n";
+    // std::cout << "After clear:\n";
+    // std::cout << "Empty: " << shapes.empty() << "\n";
 
   } catch (const std::exception& e) {
     std::cerr << "Error: " << e.what() << "\n";
+    return 1;
   }
   return 0;
   // zub::point_t polyA[3] = {{0, 0}, {4, 0}, {2, 4}};
@@ -77,17 +92,5 @@ int main()
 //   return 1;
 // }
 
-// std::cout << "--- BEFORE SCALING ---" << '\n';
-// zub::printInfo(shapes, size);
 
-// zub::scaleAtCertainPnt(shapes, size, scaleCenter, k);
-
-// std::cout << "--- AFTER SCALING (k=" << k << " relative to " << scaleCenter.x << ", "
-//           << scaleCenter.y << ") ---" << '\n';
-
-// zub::printInfo(shapes, size);
-
-// for (size_t i = 0; i < size; i++) {
-//   delete shapes[i];
-// }
 }
