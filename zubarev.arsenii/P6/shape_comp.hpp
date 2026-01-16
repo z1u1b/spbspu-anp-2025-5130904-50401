@@ -37,13 +37,13 @@ namespace zubarev
     bool empty() noexcept;
     void reserve(size_t newCapacity);
     void shrink();
-    size_t capacity();
-    Shape** shapes();
+    size_t capacity() noexcept;
+    Shape** shapes() noexcept;
 
   private:
-    Shape** shapes_;
     size_t size_;
     size_t capacity_;
+    Shape** shapes_;
   };
 }
 #endif

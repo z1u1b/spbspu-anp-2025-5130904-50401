@@ -1,9 +1,10 @@
 #include "shape_comp.hpp"
 #include <iostream>
 zubarev::Shape_comp::Shape_comp() :
-  shapes_(nullptr),
+
   size_(0),
-  capacity_(0)
+  capacity_(0),
+  shapes_(nullptr)
 {}
 
 zubarev::Shape_comp::~Shape_comp() noexcept
@@ -192,7 +193,7 @@ void zubarev::Shape_comp::dropLast()
   remove(size_ - 1);
 }
 
-void zubarev::Shape_comp::clear()
+void zubarev::Shape_comp::clear() noexcept
 {
   for (size_t i = 0; i < size_; ++i) {
     delete shapes_[i];
@@ -200,12 +201,12 @@ void zubarev::Shape_comp::clear()
   size_ = 0;
 }
 
-size_t zubarev::Shape_comp::size()
+size_t zubarev::Shape_comp::size() noexcept
 {
   return size_;
 }
 
-bool zubarev::Shape_comp::empty()
+bool zubarev::Shape_comp::empty() noexcept
 {
   return (size_ == 0);
 }
@@ -228,12 +229,12 @@ void zubarev::Shape_comp::shrink()
   reserve(size_);
 }
 
-size_t zubarev::Shape_comp::capacity()
+size_t zubarev::Shape_comp::capacity() noexcept
 {
   return capacity_;
 }
 
-zubarev::Shape** zubarev::Shape_comp::shapes()
+zubarev::Shape** zubarev::Shape_comp::shapes() noexcept
 {
   return shapes_;
 }
