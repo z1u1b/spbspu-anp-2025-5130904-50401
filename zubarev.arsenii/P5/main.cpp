@@ -1,6 +1,5 @@
-#include "all.hpp"
+#include <all.hpp>
 #include <iostream>
-
 
 int main()
 {
