@@ -46,12 +46,7 @@ int main()
 
     zub::printInfo(shapes.shapes(), shapes.size());
 
-    for (size_t i = 0; i < shapes.size(); i++) {
-      delete shapes.shapes()[i];
-    }
-
-
-
+    
   } catch (const std::exception& e) {
     std::cerr << "Error: " << e.what() << "\n";
     return 1;
