@@ -2,8 +2,6 @@
 #include <all.hpp>
 #include <iostream>
 
-
-
 int main()
 {
   namespace zub = zubarev;
@@ -28,7 +26,7 @@ int main()
 
   try {
 
-    
+
     shapes.append(new zub::Rectangle(2, 2, {-7, -7}));
 
 
@@ -47,12 +45,14 @@ int main()
 
 
     shapes.add(new zub::Rectangle(2, 8, {2, 2}), 2);
-    std::cout << "\nAfter insert at index 2:\n";
+    std::cout << "\n";
+    std::cout << "After insert at index 2:\n";
     zub::printInfo(shapes.shapes(), shapes.size());
 
 
     shapes.remove(1);
-    std::cout << "\nAfter remove index 1:\n";
+    std::cout << "\n";
+    std::cout << "After remove index 1:\n";
     zub::printInfo(shapes.shapes(), shapes.size());
 
     shapes.dropFirst();
@@ -61,16 +61,15 @@ int main()
     zub::printInfo(shapes.shapes(), shapes.size());
 
     shapes.clear();
-    std::cout << "\nAfter clear:\n";
+    std::cout << "\n";
+    std::cout << "After clear:\n";
     std::cout << "Empty: " << shapes.empty() << "\n";
 
   } catch (const std::exception& e) {
     std::cerr << "Error: " << e.what() << "\n";
   }
-
   return 0;
-}
-// zub::point_t polyA[3] = {{0, 0}, {4, 0}, {2, 4}};
+  // zub::point_t polyA[3] = {{0, 0}, {4, 0}, {2, 4}};
 // try {
 //   shapes[0] = new zub::Polygon(3, polyA);
 // } catch (...) {
@@ -91,3 +90,4 @@ int main()
 // for (size_t i = 0; i < size; i++) {
 //   delete shapes[i];
 // }
+}
