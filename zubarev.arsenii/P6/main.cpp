@@ -25,13 +25,8 @@ int main()
   zub::Shape_comp shapes = zub::Shape_comp();
 
   try {
-
-
     shapes.append(new zub::Rectangle(2, 2, {-7, -7}));
-
-
     shapes.append(new zub::Ring(3, 1, {5, -10}));
-
 
     zub::point_t polyA[3] = {{0, 0}, {4, 0}, {2, 4}};
     shapes.preappend(new zub::Polygon(3, polyA));
@@ -46,7 +41,6 @@ int main()
 
     zub::printInfo(shapes.shapes(), shapes.size());
 
-    
   } catch (const std::exception& e) {
     std::cerr << "Error: " << e.what() << "\n";
     return 1;
