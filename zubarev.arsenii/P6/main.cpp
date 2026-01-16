@@ -50,20 +50,10 @@ int main()
       delete shapes.shapes()[i];
     }
 
-    
+
 
   } catch (const std::exception& e) {
     std::cerr << "Error: " << e.what() << "\n";
     return 1;
   }
-  return 0;
-  // zub::point_t polyA[3] = {{0, 0}, {4, 0}, {2, 4}};
-// try {
-//   shapes[0] = new zub::Polygon(3, polyA);
-// } catch (...) {
-//   std::cerr << "Memory allocation" << '\n';
-//   return 1;
-// }
-
-
 }
