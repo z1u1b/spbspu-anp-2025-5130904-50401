@@ -1,10 +1,9 @@
-#include "shape_comp.hpp";
+#include "shape_comp.hpp"
 #include <iostream>
 zubarev::Shape_comp::Shape_comp() :
+  shapes_(nullptr),
   size_(0),
-  capacity_(0),
-  shapes_(nullptr)
-
+  capacity_(0)
 {}
 
 zubarev::Shape_comp::~Shape_comp() noexcept
@@ -62,12 +61,12 @@ zubarev::Shape_comp& zubarev::Shape_comp::operator=(zubarev::Shape_comp&& w)
   return *this;
 }
 
-double zubarev::Shape_comp::getArea() const
+double zubarev::Shape_comp::getArea() const noexcept
 {
   return getWholeArea(shapes_, size_);
 }
 
-zubarev::rectangle_t zubarev::Shape_comp::getFrameRect() const
+zubarev::rectangle_t zubarev::Shape_comp::getFrameRect() const noexcept
 {
   return getWholeFrame(shapes_, size_);
 }
@@ -83,6 +82,17 @@ void zubarev::Shape_comp::move(double dx, double dy) noexcept
 {
   for (size_t i = 0; i < size_; ++i) {
     shapes_[i]->move(dx, dy);
+  }
+}
+
+void zubarev::Shape_comp::scale(double k)
+{
+  if (k <= 0) {
+    throw std::invalid_argument("Scale must be positive");
+  }
+
+  for (size_t i = 0; i < size_; ++i) {
+    shapes_[i]->scale(k);
   }
 }
 

@@ -16,6 +16,7 @@ namespace zubarev
     rectangle_t getFrameRect() const noexcept override;
     void move(const point_t& p) noexcept override;
     void move(double dx, double dy) noexcept override;
+    void scale(double k) override;
 
     void append(Shape* value);
     void preappend(Shape* value);
