@@ -50,34 +50,7 @@ int main()
       delete shapes.shapes()[i];
     }
 
-    // zub::printInfo(shapes.shapes(), shapes.size());
-
-
-    // std::cout << "\n";
-    // std::cout << "First area: " << shapes.first().getArea() << "\n";
-    // std::cout << "Last area: " << shapes.last().getArea() << "\n";
-
-
-    // shapes.add(new zub::Rectangle(2, 8, {2, 2}), 2);
-    // std::cout << "\n";
-    // std::cout << "After insert at index 2:\n";
-    // zub::printInfo(shapes.shapes(), shapes.size());
-
-
-    // shapes.remove(1);
-    // std::cout << "\n";
-    // std::cout << "After remove index 1:\n";
-    // zub::printInfo(shapes.shapes(), shapes.size());
-
-    // shapes.dropFirst();
-    // shapes.dropLast();
-    // std::cout << "\nAfter drop first and last:\n";
-    // zub::printInfo(shapes.shapes(), shapes.size());
-
-    // shapes.clear();
-    // std::cout << "\n";
-    // std::cout << "After clear:\n";
-    // std::cout << "Empty: " << shapes.empty() << "\n";
+    
 
   } catch (const std::exception& e) {
     std::cerr << "Error: " << e.what() << "\n";
