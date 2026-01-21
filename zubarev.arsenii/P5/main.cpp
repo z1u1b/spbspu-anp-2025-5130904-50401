@@ -41,7 +41,7 @@ int main()
 
   zub::scaleAtCertainPnt(shapes, size, scaleCenter, k);
 
-  std::cout << "--- AFTER SCALING (k=" << k << " relative to " << scaleCenter.x << ", " << scaleCenter.y << ") ---" << '\n';
+  std::cout << "--- AFTER SCALING (k=" << k << "point: " << scaleCenter.x << ", " << scaleCenter.y << ") ---" << '\n';
 
   zub::printInfo(shapes, size);
 
