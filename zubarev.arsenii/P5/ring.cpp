@@ -1,7 +1,8 @@
 #include "ring.hpp"
 #include <cmath>
 #include <algorithm>
-zubarev::Ring::Ring(double r1, double r2, const point_t& pos) :
+#include <stdexcept>
+zubarev::Ring::Ring(double r1, double r2, const point_t& pos):
   r1_(r1),
   r2_(r2),
   pos_(pos)
