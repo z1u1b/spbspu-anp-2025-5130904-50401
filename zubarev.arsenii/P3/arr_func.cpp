@@ -1,5 +1,5 @@
 #include "arr_func.hpp"
-
+#include "limits"
 int zubarev::getMaxInt()
 {
   using namespace std;
@@ -14,8 +14,7 @@ int zubarev::getMinInt()
   return int_limit::min();
 }
 
-std::ostream&
-zubarev::outputMatrix(std::ostream& out, const int* const matrix, size_t rows, size_t cols)
+std::ostream&zubarev::outputMatrix(std::ostream& out, const int* const matrix, size_t rows, size_t cols)
 {
   for (size_t i = 0; i < rows; ++i) {
     for (size_t j = 0; j < cols; ++j) {
