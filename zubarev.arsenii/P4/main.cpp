@@ -2,7 +2,6 @@
 
 namespace zubarev
 {
-  std::ostream& outputMatrix(std::ostream& out, const char* const str, const size_t size);
   size_t strlen(const char* s);
   bool inStr(const char* const str, const char let);
   int solveSpliceStr(const char* mainStr, const char* secondStr, char* finalStr);
@@ -75,15 +74,6 @@ int main()
   }
 
   delete[] myWords;
-}
-
-std::ostream& zubarev::outputMatrix(std::ostream& out, const char* const str, const size_t size)
-{
-  for (size_t i = 0; i < size; ++i) {
-    out << str[i];
-  }
-  out << '\n';
-  return out;
 }
 
 size_t zubarev::strlen(const char* s)
