@@ -7,7 +7,7 @@ namespace zubarev
 {
   struct Polygon : Shape
   {
-    Polygon(const size_t size, point_t* peaks);
+    Polygon(const size_t size, const point_t* peaks);
     virtual ~Polygon();
     Polygon(const Polygon& w);
     Polygon& operator=(const Polygon& w);
@@ -18,12 +18,14 @@ namespace zubarev
     void move(const point_t& p) override;
     void move(double dx, double dy) override;
     void scale(double k) override;
-    point_t getCentroid();
+
 
   private:
+
     size_t size_;
     point_t* peaks_;
     point_t pos_;
+    point_t getCentroid() const;
   };
 }
 

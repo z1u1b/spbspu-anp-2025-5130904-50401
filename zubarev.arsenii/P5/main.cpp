@@ -28,13 +28,13 @@ int main()
   zub::point_t polyA[3] = {{0, 0}, {4, 0}, {2, 4}};
   try {
     shapes[0] = new zub::Polygon(3, polyA);
+    shapes[1] = new zub::Rectangle(2, 2, {-7, -7});
+    shapes[2] = new zub::Ring(3, 1, {5, -10});
   } catch (...) {
     std::cerr << "Memory allocation" << '\n';
     return 1;
   }
 
-  shapes[1] = new zub::Rectangle(2, 2, {-7, -7});
-  shapes[2] = new zub::Ring(3, 1, {5, -10});
 
   std::cout << "--- BEFORE SCALING ---" << '\n';
   zub::printInfo(shapes, size);

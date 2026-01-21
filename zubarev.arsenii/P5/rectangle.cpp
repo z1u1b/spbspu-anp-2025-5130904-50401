@@ -1,5 +1,5 @@
 #include "rectangle.hpp"
-
+#include <stdexcept>
 zubarev::Rectangle::Rectangle(double width, double height, const point_t& pos) :
   width_(width),
   height_(height),
@@ -33,6 +33,9 @@ void zubarev::Rectangle::move(double dx, double dy)
 
 void zubarev::Rectangle::scale(double k)
 {
+  if (k <= 0.0) {
+    throw std::invalid_argument("Scale factor must be positive");
+  }
   width_ *= k;
   height_ *= k;
 }

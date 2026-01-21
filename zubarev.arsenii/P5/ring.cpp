@@ -35,6 +35,9 @@ void zubarev::Ring::move(double dx, double dy)
 
 void zubarev::Ring::scale(double k)
 {
+  if (k <= 0.0) {
+    throw std::invalid_argument("Scale factor must be positive");
+  }
   r1_ *= k;
   r2_ *= k;
 }
