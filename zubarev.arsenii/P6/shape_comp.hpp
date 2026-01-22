@@ -3,14 +3,14 @@
 #include <all.hpp>
 namespace zubarev
 {
-  struct Shape_comp : Shape
+  struct ShapeComp : Shape
   {
-    Shape_comp();
-    ~Shape_comp() noexcept;
-    Shape_comp(const Shape_comp& w);
-    Shape_comp& operator=(const Shape_comp& w);
-    Shape_comp(Shape_comp&& w);
-    Shape_comp& operator=(Shape_comp&& w);
+    ShapeComp();
+    ~ShapeComp() noexcept;
+    ShapeComp(const ShapeComp& w);
+    ShapeComp& operator=(const ShapeComp& w);
+    ShapeComp(ShapeComp&& w);
+    ShapeComp& operator=(ShapeComp&& w);
 
     double getArea() const noexcept override;
     rectangle_t getFrameRect() const noexcept override;

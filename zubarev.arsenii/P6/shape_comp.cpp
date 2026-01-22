@@ -1,13 +1,12 @@
 #include "shape_comp.hpp"
 #include <iostream>
-zubarev::Shape_comp::Shape_comp() :
-
+zubarev::ShapeComp::ShapeComp():
   size_(0),
   capacity_(0),
   shapes_(nullptr)
 {}
 
-zubarev::Shape_comp::~Shape_comp() noexcept
+zubarev::ShapeComp::~ShapeComp() noexcept
 {
   for (size_t i = 0; i < size_; ++i) {
     delete shapes_[i];
@@ -15,7 +14,7 @@ zubarev::Shape_comp::~Shape_comp() noexcept
   delete[] shapes_;
 }
 
-zubarev::Shape_comp::Shape_comp(const Shape_comp& w) :
+zubarev::ShapeComp::ShapeComp(const ShapeComp& w):
   size_(w.size_),
   capacity_(w.capacity_),
   shapes_(w.size_ ? new Shape*[w.capacity_] : nullptr)
@@ -25,7 +24,7 @@ zubarev::Shape_comp::Shape_comp(const Shape_comp& w) :
   }
 }
 
-zubarev::Shape_comp& zubarev::Shape_comp::operator=(const Shape_comp& w)
+zubarev::ShapeComp& zubarev::ShapeComp::operator=(const ShapeComp& w)
 {
   Shape** r = nullptr;
   if (w.size_) {
@@ -41,7 +40,7 @@ zubarev::Shape_comp& zubarev::Shape_comp::operator=(const Shape_comp& w)
   return *this;
 }
 
-zubarev::Shape_comp::Shape_comp(Shape_comp&& w) :
+zubarev::ShapeComp::ShapeComp(ShapeComp&& w):
   size_(w.size_),
   capacity_(w.capacity_),
   shapes_(w.shapes_)
@@ -49,7 +48,7 @@ zubarev::Shape_comp::Shape_comp(Shape_comp&& w) :
   w.shapes_ = nullptr;
 }
 
-zubarev::Shape_comp& zubarev::Shape_comp::operator=(zubarev::Shape_comp&& w)
+zubarev::ShapeComp& zubarev::ShapeComp::operator=(zubarev::ShapeComp&& w)
 {
   if (this == &w) {
     return *this;
@@ -62,31 +61,31 @@ zubarev::Shape_comp& zubarev::Shape_comp::operator=(zubarev::Shape_comp&& w)
   return *this;
 }
 
-double zubarev::Shape_comp::getArea() const noexcept
+double zubarev::ShapeComp::getArea() const noexcept
 {
   return getWholeArea(shapes_, size_);
 }
 
-zubarev::rectangle_t zubarev::Shape_comp::getFrameRect() const noexcept
+zubarev::rectangle_t zubarev::ShapeComp::getFrameRect() const noexcept
 {
   return getWholeFrame(shapes_, size_);
 }
 
-void zubarev::Shape_comp::move(const zubarev::point_t& p) noexcept
+void zubarev::ShapeComp::move(const zubarev::point_t& p) noexcept
 {
   for (size_t i = 0; i < size_; ++i) {
     shapes_[i]->move(p);
   }
 }
 
-void zubarev::Shape_comp::move(double dx, double dy) noexcept
+void zubarev::ShapeComp::move(double dx, double dy) noexcept
 {
   for (size_t i = 0; i < size_; ++i) {
     shapes_[i]->move(dx, dy);
   }
 }
 
-void zubarev::Shape_comp::scale(double k)
+void zubarev::ShapeComp::scale(double k)
 {
   if (k <= 0) {
     throw std::invalid_argument("Scale must be positive");
@@ -97,17 +96,17 @@ void zubarev::Shape_comp::scale(double k)
   }
 }
 
-void zubarev::Shape_comp::append(Shape* value)
+void zubarev::ShapeComp::append(Shape* value)
 {
   add(value, size_);
 }
 
-void zubarev::Shape_comp::preappend(Shape* value)
+void zubarev::ShapeComp::preappend(Shape* value)
 {
   add(value, 0);
 }
 
-void zubarev::Shape_comp::add(Shape* value, size_t index)
+void zubarev::ShapeComp::add(Shape* value, size_t index)
 {
   if (index > size_) {
     throw std::out_of_range("Index out of range");
@@ -140,16 +139,16 @@ void zubarev::Shape_comp::add(Shape* value, size_t index)
   ++size_;
 }
 
-zubarev::Shape& zubarev::Shape_comp::first() noexcept
+zubarev::Shape& zubarev::ShapeComp::first() noexcept
 {
   return get(0);
 }
-zubarev::Shape& zubarev::Shape_comp::last() noexcept
+zubarev::Shape& zubarev::ShapeComp::last() noexcept
 {
   return get(size_ - 1);
 }
 
-zubarev::Shape& zubarev::Shape_comp::at(size_t index)
+zubarev::Shape& zubarev::ShapeComp::at(size_t index)
 {
   if (index >= size_) {
     throw std::out_of_range("Index out of range");
@@ -157,12 +156,12 @@ zubarev::Shape& zubarev::Shape_comp::at(size_t index)
   return *shapes_[index];
 }
 
-zubarev::Shape& zubarev::Shape_comp::get(size_t index) noexcept
+zubarev::Shape& zubarev::ShapeComp::get(size_t index) noexcept
 {
   return *shapes_[index];
 }
 
-void zubarev::Shape_comp::remove(size_t index)
+void zubarev::ShapeComp::remove(size_t index)
 {
   if (index > size_) {
     throw std::out_of_range("Index out of range");
@@ -175,7 +174,7 @@ void zubarev::Shape_comp::remove(size_t index)
   --size_;
 }
 
-void zubarev::Shape_comp::dropFirst()
+void zubarev::ShapeComp::dropFirst()
 {
   if (size_ == 0) {
     throw std::out_of_range("Index out of range");
@@ -184,7 +183,7 @@ void zubarev::Shape_comp::dropFirst()
   remove(0);
 }
 
-void zubarev::Shape_comp::dropLast()
+void zubarev::ShapeComp::dropLast()
 {
   if (size_ == 0) {
     throw std::out_of_range("Index out of range");
@@ -193,7 +192,7 @@ void zubarev::Shape_comp::dropLast()
   remove(size_ - 1);
 }
 
-void zubarev::Shape_comp::clear() noexcept
+void zubarev::ShapeComp::clear() noexcept
 {
   for (size_t i = 0; i < size_; ++i) {
     delete shapes_[i];
@@ -201,17 +200,17 @@ void zubarev::Shape_comp::clear() noexcept
   size_ = 0;
 }
 
-size_t zubarev::Shape_comp::size() noexcept
+size_t zubarev::ShapeComp::size() noexcept
 {
   return size_;
 }
 
-bool zubarev::Shape_comp::empty() noexcept
+bool zubarev::ShapeComp::empty() noexcept
 {
   return (size_ == 0);
 }
 
-void zubarev::Shape_comp::reserve(size_t newCapacity)
+void zubarev::ShapeComp::reserve(size_t newCapacity)
 {
   Shape** newArr = new Shape*[newCapacity];
 
@@ -224,17 +223,17 @@ void zubarev::Shape_comp::reserve(size_t newCapacity)
   capacity_ = newCapacity;
 }
 
-void zubarev::Shape_comp::shrink()
+void zubarev::ShapeComp::shrink()
 {
   reserve(size_);
 }
 
-size_t zubarev::Shape_comp::capacity() noexcept
+size_t zubarev::ShapeComp::capacity() noexcept
 {
   return capacity_;
 }
 
-zubarev::Shape** zubarev::Shape_comp::shapes() noexcept
+zubarev::Shape** zubarev::ShapeComp::shapes() noexcept
 {
   return shapes_;
 }

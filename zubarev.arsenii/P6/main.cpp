@@ -22,7 +22,7 @@ int main()
     return 1;
   }
 
-  zub::Shape_comp shapes = zub::Shape_comp();
+  zub::ShapeComp shapes = zub::ShapeComp();
 
   try {
     shapes.append(new zub::Rectangle(2, 2, {-7, -7}));
@@ -36,8 +36,7 @@ int main()
 
     zub::scaleAtCertainPnt(shapes.shapes(), shapes.size(), scaleCenter, k);
 
-    std::cout << "--- AFTER SCALING (k=" << k << " relative to " << scaleCenter.x << ", "
-          << scaleCenter.y << ") ---" << '\n';
+    std::cout << "--- AFTER SCALING (k=" << k << " relative to " << scaleCenter.x << ", " << scaleCenter.y << ") ---" << '\n';
 
     zub::printInfo(shapes.shapes(), shapes.size());
 
