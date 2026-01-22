@@ -31,7 +31,11 @@ int main()
     shapes[1] = new zub::Rectangle(2, 2, {-7, -7});
     shapes[2] = new zub::Ring(3, 1, {5, -10});
   } catch (...) {
-    std::cerr << "Memory allocation" << '\n';
+    for (size_t i = 0; i < size; ++i) {
+      delete shapes[i];
+      shapes[i] = nullptr;
+    }
+    std::cerr << "Memory allocation failed\n";
     return 1;
   }
 

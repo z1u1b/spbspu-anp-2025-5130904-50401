@@ -40,7 +40,7 @@ zubarev::Polygon& zubarev::Polygon::operator=(const Polygon& w)
   size_ = w.size_;
   return *this;
 }
-zubarev::Polygon::Polygon(Polygon&& w) :
+zubarev::Polygon::Polygon(Polygon&& w):
   size_(w.size_),
   peaks_(w.peaks_),
   pos_(w.pos_)
@@ -127,11 +127,8 @@ void zubarev::Polygon::move(const point_t& p)
   move(dx, dy);
 }
 
-void zubarev::Polygon::scale(double k)
+void zubarev::Polygon::doScale(double k)
 {
-  if (k <= 0.0) {
-    throw std::invalid_argument("Scale factor must be positive");
-  }
   point_t c = getCentroid();
 
   for (size_t i = 0; i < size_; ++i) {

@@ -12,7 +12,7 @@ zubarev::point_t zubarev::getBottomRight(const rectangle_t& frame)
 
 void zubarev::scaleAtCertainPnt(Shape* shapes[], size_t size, point_t userPos, double k)
 {
-  for (size_t i=0;i<size;i++) {
+  for (size_t i = 0; i < size; i++) {
     point_t lastCenter=shapes[i]->getFrameRect().pos;
     shapes[i]->move(userPos);
     shapes[i]->scale(k);
