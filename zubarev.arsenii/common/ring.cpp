@@ -1,11 +1,16 @@
 #include "ring.hpp"
 #include <cmath>
 #include <algorithm>
-zubarev::Ring::Ring(double r1, double r2, const point_t& pos) :
+#include <stdexcept>
+zubarev::Ring::Ring(double r1, double r2, const point_t& pos):
   r1_(r1),
   r2_(r2),
   pos_(pos)
-{}
+{
+  if (r1 <= 0.0 || r2 <= 0.0) {
+    throw std::invalid_argument("Width and height must be positive");
+  }
+}
 
 double zubarev::Ring::getArea() const
 {
@@ -33,7 +38,7 @@ void zubarev::Ring::move(double dx, double dy)
   pos_.y += dy;
 }
 
-void zubarev::Ring::scale(double k)
+void zubarev::Ring::doScale(double k)
 {
   r1_ *= k;
   r2_ *= k;

@@ -12,8 +12,9 @@ namespace zubarev
     rectangle_t getFrameRect() const override;
     void move(const point_t& p) override;
     void move(double dx, double dy) override;
-    void scale(double k) override;
 
+  protected:
+    void doScale(double k) override;
   private:
     double width_, height_;
     point_t pos_;

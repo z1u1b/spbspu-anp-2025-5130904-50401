@@ -5,8 +5,8 @@
 
 namespace zubarev
 {
-  point_t getExtL(const rectangle_t& frame);
-  point_t getExtR(const rectangle_t& frame);
+  point_t getTopLeft(const rectangle_t& frame);
+  point_t getBottomRight(const rectangle_t& frame);
   void scaleAtCertainPnt(Shape* shapes[], size_t size, point_t userPos, double k);
   rectangle_t getWholeFrame(Shape* shapes[], size_t size);
   double getWholeArea(Shape* shapes[], size_t size);
